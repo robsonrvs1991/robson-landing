@@ -8,7 +8,7 @@
   <style>
     .profile-float {
       position: absolute;
-      top: 110px;
+      top: 90px;
       left: 50%;
       transform: translateX(-50%);
       border: 4px solid white;
@@ -16,9 +16,10 @@
       width: 120px;
       height: 120px;
       object-fit: cover;
-      box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 15px 5px #3b82f6;
       transition: transform 0.3s ease-in-out;
       z-index: 10;
+      cursor: move;
     }
     .profile-float:hover {
       transform: translateX(-50%) scale(2);
@@ -66,7 +67,7 @@
     function toggleTheme() {
       document.documentElement.classList.toggle('dark-mode');
       const isDark = document.documentElement.classList.contains('dark-mode');
-      document.getElementById('tema-btn').innerText = isDark ? '🌙 Modo Escuro' : '☀️ Modo Claro';
+      document.getElementById('tema-btn').innerText = isDark ? '☀️ Modo Claro' : '🌙 Modo Escuro';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -124,6 +125,29 @@
       }
 
       requestAnimationFrame(animate);
+
+      // tornar a foto arrastável
+      const foto = document.querySelector('.profile-float');
+      let isDragging = false;
+      let offsetX, offsetY;
+
+      foto.addEventListener('mousedown', e => {
+        isDragging = true;
+        offsetX = e.clientX - foto.getBoundingClientRect().left;
+        offsetY = e.clientY - foto.getBoundingClientRect().top;
+      });
+
+      document.addEventListener('mousemove', e => {
+        if (isDragging) {
+          foto.style.left = `${e.clientX - offsetX}px`;
+          foto.style.top = `${e.clientY - offsetY}px`;
+          foto.style.transform = 'none';
+        }
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
     });
   </script>
 </head>
@@ -133,15 +157,13 @@
   </div>
 
   <div class="max-w-3xl mx-auto mt-4 bg-white shadow-lg rounded-xl p-6 relative">
-    <div class="flex justify-center mb-2 space-x-2 animate-bounce text-xl">
+    <img src="foto-robson.jpeg" alt="Robson Santos" class="profile-float">
+
+    <div class="text-center mt-32">
       <span title="Tecnologia">💻</span>
       <span title="Finanças">💸</span>
       <span title="Cloud">☁️</span>
       <span title="Segurança">🔒</span>
-    </div>
-    <img src="foto-robson.jpeg" alt="Robson Santos" class="profile-float">
-
-    <div class="text-center mt-24">
       <h1 class="text-3xl font-bold">Robson Santos</h1>
       <p class="text-base text-gray-500">Graduado e Pós-Graduado em Tecnologia da Informação</p>
       <p class="text-lg text-gray-600 font-medium">Especialista em Governança de Tecnologia e Mercado Financeiro</p>
@@ -161,7 +183,7 @@
 
     <section class="mt-6">
       <h2 class="text-xl font-semibold mb-2">⚖️ Compliance e Segurança</h2>
-      <p class="text-sm">CPA-10 (ANBIMA) | LGPD (Udemy) | Scrum (Udemy) | ISO/IEC 27001:2022 e 17025 | EBANX F5 – Infraestrutura e Performance Tecnológica</p>
+      <p class="text-sm">CPA-10 (ANBIMA) | LGPD (Udemy) | Scrum | ISO/IEC 27001:2022 e 17025 | EBANX F5 – Infraestrutura e Performance Tecnológica</p>
     </section>
 
     <section class="mt-6">
