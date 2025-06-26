@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Robson Santos - Landing Page</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    function copiarEmail() {
+      const email = 'robsonrvs1991@gmail.com';
+      navigator.clipboard.writeText(email).then(function () {
+        const alerta = document.getElementById('alerta-copiado');
+        alerta.classList.remove('hidden');
+        setTimeout(() => alerta.classList.add('hidden'), 2000);
+      });
+    }
+  </script>
   <style>
     .profile-float {
       position: absolute;
@@ -23,10 +33,10 @@
 <body class="bg-gray-100 text-gray-800">
   <div class="max-w-3xl mx-auto mt-16 bg-white shadow-lg rounded-xl p-6 relative">
     <img src="foto-robson.jpeg" alt="Robson Santos" class="profile-float">
-    <img src="foto-robson.jpeg" alt="Robson Santos" class="profile-float">
 
     <div class="text-center mt-20">
       <h1 class="text-3xl font-bold">Robson Santos</h1>
+      <p class="text-sm text-gray-500">Graduado e Pós-Graduado em Tecnologia da Informação</p>
       <p class="text-lg text-gray-600">Especialista em Governança de Tecnologia e Mercado Financeiro</p>
       <p class="text-sm text-gray-500">Foco em Cooperativas, SCDs e Instituições de Pagamento</p>
     </div>
@@ -58,13 +68,15 @@
 
     <section class="mt-6 text-center">
       <h2 class="text-xl font-semibold mb-2">🤝 Contato</h2>
-      <p class="text-sm">
-        <a href="https://www.linkedin.com/in/robson-v-8b258290/" class="text-blue-600 hover:underline" target="_blank">💼 LinkedIn</a> |
-        <a href="https://github.com/robsonrvs1991" class="text-gray-700 hover:underline" target="_blank">🛠️ GitHub</a> |
-        <a href="mailto:robsonrvs1991@gmail.com" class="text-red-600 hover:underline">✉️ Email</a>
+      <p class="text-sm space-x-2">
+        <a href="https://www.linkedin.com/in/robson-v-8b258290/" class="text-blue-600 hover:underline" target="_blank">💼 LinkedIn</a>
+        <span class="text-gray-400">|</span>
+        <a href="https://github.com/robsonrvs1991" class="text-gray-700 hover:underline" target="_blank">🛠️ GitHub</a>
+        <span class="text-gray-400">|</span>
+        <button onclick="copiarEmail()" class="text-red-600 hover:underline focus:outline-none">✉️ Copiar Email</button>
       </p>
+      <p id="alerta-copiado" class="mt-2 text-green-600 text-sm hidden">Email copiado para a área de transferência!</p>
     </section>
   </div>
 </body>
 </html>
-
