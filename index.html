@@ -20,6 +20,9 @@
       transition: transform 0.3s ease-in-out;
       z-index: 10;
     }
+    .profile-float:hover {
+      transform: translateX(-50%) scale(1.25);
+    }
     canvas.background-code {
       position: fixed;
       top: 0;
@@ -59,8 +62,8 @@
 
     function toggleTheme() {
       document.documentElement.classList.toggle('dark-mode');
-      const current = document.documentElement.classList.contains('dark-mode') ? '🌙 Modo Claro' : '🌙 Modo Escuro';
-      document.getElementById('tema-btn').innerText = current;
+      const isDark = document.documentElement.classList.contains('dark-mode');
+      document.getElementById('tema-btn').innerText = isDark ? '☀️ Modo Claro' : '🌙 Modo Escuro';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -81,13 +84,16 @@
         'token.valid?',
       ];
 
+      const colors = ['#10B981', '#3B82F6', '#EF4444', '#F59E0B', '#8B5CF6', '#9CA3AF'];
+
       let lines = [];
       for (let i = 0; i < 30; i++) {
         lines.push({
           text: codes[Math.floor(Math.random() * codes.length)],
           x: Math.random() * canvas.width,
           y: -Math.random() * 500,
-          speed: 1 + Math.random() * 2
+          speed: 1 + Math.random() * 2,
+          color: colors[Math.floor(Math.random() * colors.length)]
         });
       }
 
@@ -100,9 +106,9 @@
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.font = '14px monospace';
-        ctx.fillStyle = 'rgba(0, 255, 150, 0.6)';
 
         lines.forEach(line => {
+          ctx.fillStyle = line.color;
           ctx.fillText(line.text, line.x, line.y);
           line.y += line.speed;
         });
