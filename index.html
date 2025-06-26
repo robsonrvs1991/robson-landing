@@ -8,9 +8,9 @@
   <style>
     .profile-float {
       position: absolute;
-      top: 90px;
+      top: 10px;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) scale(1);
       border: 4px solid white;
       border-radius: 9999px;
       width: 120px;
@@ -19,10 +19,13 @@
       box-shadow: 0 0 15px 5px #3b82f6;
       transition: transform 0.3s ease-in-out;
       z-index: 10;
-      cursor: move;
+      cursor: grab;
     }
-    .profile-float:hover {
+    .profile-float.hovering {
       transform: translateX(-50%) scale(2);
+    }
+    .dragging {
+      cursor: grabbing;
     }
     canvas.background-code {
       position: fixed;
@@ -126,13 +129,22 @@
 
       requestAnimationFrame(animate);
 
-      // tornar a foto arrastável
+      // tornar a foto arrastável com zoom dinâmico
       const foto = document.querySelector('.profile-float');
       let isDragging = false;
       let offsetX, offsetY;
 
+      foto.addEventListener('mouseenter', () => {
+        if (!isDragging) foto.classList.add('hovering');
+      });
+      foto.addEventListener('mouseleave', () => {
+        if (!isDragging) foto.classList.remove('hovering');
+      });
+
       foto.addEventListener('mousedown', e => {
         isDragging = true;
+        foto.classList.add('dragging');
+        foto.classList.remove('hovering');
         offsetX = e.clientX - foto.getBoundingClientRect().left;
         offsetY = e.clientY - foto.getBoundingClientRect().top;
       });
@@ -141,12 +153,12 @@
         if (isDragging) {
           foto.style.left = `${e.clientX - offsetX}px`;
           foto.style.top = `${e.clientY - offsetY}px`;
-          foto.style.transform = 'none';
         }
       });
 
       document.addEventListener('mouseup', () => {
         isDragging = false;
+        foto.classList.remove('dragging');
       });
     });
   </script>
@@ -159,7 +171,7 @@
   <div class="max-w-3xl mx-auto mt-4 bg-white shadow-lg rounded-xl p-6 relative">
     <img src="foto-robson.jpeg" alt="Robson Santos" class="profile-float">
 
-    <div class="text-center mt-32">
+    <div class="text-center mt-40">
       <span title="Tecnologia">💻</span>
       <span title="Finanças">💸</span>
       <span title="Cloud">☁️</span>
