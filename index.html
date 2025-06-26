@@ -8,7 +8,7 @@
   <style>
     .profile-float {
       position: absolute;
-      top: -60px;
+      top: 80px;
       left: 50%;
       transform: translateX(-50%);
       border: 4px solid white;
@@ -16,12 +16,12 @@
       width: 120px;
       height: 120px;
       object-fit: cover;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8);
       transition: transform 0.3s ease-in-out;
       z-index: 10;
     }
     .profile-float:hover {
-      transform: translateX(-50%) scale(1.25);
+      transform: translateX(-50%) scale(1.7);
     }
     canvas.background-code {
       position: fixed;
@@ -48,6 +48,9 @@
     }
     .dark-mode .text-gray-400 {
       color: #6b7280;
+    }
+    .dark-mode .text-gray-700 {
+      color: #e5e7eb;
     }
   </style>
   <script>
@@ -130,15 +133,15 @@
   </div>
 
   <div class="max-w-3xl mx-auto mt-4 bg-white shadow-lg rounded-xl p-6 relative">
+    <div class="flex justify-center mb-2 space-x-2 animate-bounce text-xl">
+      <span title="Tecnologia">💻</span>
+      <span title="Finanças">💸</span>
+      <span title="Cloud">☁️</span>
+      <span title="Segurança">🔒</span>
+    </div>
     <img src="foto-robson.jpeg" alt="Robson Santos" class="profile-float">
 
     <div class="text-center mt-24">
-      <div class="flex justify-center mb-4 space-x-2 animate-bounce text-xl">
-        <span title="Tecnologia">💻</span>
-        <span title="Finanças">💸</span>
-        <span title="Cloud">☁️</span>
-        <span title="Segurança">🔒</span>
-      </div>
       <h1 class="text-3xl font-bold">Robson Santos</h1>
       <p class="text-base text-gray-500">Graduado e Pós-Graduado em Tecnologia da Informação</p>
       <p class="text-lg text-gray-600 font-medium">Especialista em Governança de Tecnologia e Mercado Financeiro</p>
@@ -175,7 +178,7 @@
       <p class="text-sm space-x-2">
         <a href="https://www.linkedin.com/in/robson-v-8b258290/" class="text-blue-600 hover:underline" target="_blank">💼 LinkedIn</a>
         <span class="text-gray-400">|</span>
-        <a href="https://github.com/robsonrvs1991" class="text-gray-700 hover:underline" target="_blank">🛠️ GitHub</a>
+        <a href="https://github.com/robsonrvs1991" class="text-purple-600 hover:underline" target="_blank">🛠️ GitHub</a>
         <span class="text-gray-400">|</span>
         <button onclick="copiarEmail()" class="text-red-600 hover:underline focus:outline-none">✉️ Copiar Email</button>
       </p>
