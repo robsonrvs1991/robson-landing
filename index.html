@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,6 +27,25 @@
       z-index: 0;
       pointer-events: none;
     }
+    .dark-mode body {
+      background-color: #1f2937;
+      color: #f9fafb;
+    }
+    .dark-mode .bg-white {
+      background-color: #374151;
+    }
+    .dark-mode .text-gray-800 {
+      color: #f9fafb;
+    }
+    .dark-mode .text-gray-600 {
+      color: #d1d5db;
+    }
+    .dark-mode .text-gray-500 {
+      color: #9ca3af;
+    }
+    .dark-mode .text-gray-400 {
+      color: #6b7280;
+    }
   </style>
   <script>
     function copiarEmail() {
@@ -36,6 +55,12 @@
         alerta.classList.remove('hidden');
         setTimeout(() => alerta.classList.add('hidden'), 2000);
       });
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark-mode');
+      const current = document.documentElement.classList.contains('dark-mode') ? '🌙 Modo Claro' : '🌙 Modo Escuro';
+      document.getElementById('tema-btn').innerText = current;
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -94,7 +119,11 @@
   </script>
 </head>
 <body class="bg-gray-100 text-gray-800">
-  <div class="max-w-3xl mx-auto mt-16 bg-white shadow-lg rounded-xl p-6 relative">
+  <div class="max-w-3xl mx-auto mt-4 text-right pr-4">
+    <button id="tema-btn" onclick="toggleTheme()" class="text-sm bg-gray-200 dark:bg-gray-600 px-3 py-1 rounded hover:bg-gray-300">🌙 Modo Escuro</button>
+  </div>
+
+  <div class="max-w-3xl mx-auto mt-4 bg-white shadow-lg rounded-xl p-6 relative">
     <img src="foto-robson.jpeg" alt="Robson Santos" class="profile-float">
 
     <div class="text-center mt-24">
